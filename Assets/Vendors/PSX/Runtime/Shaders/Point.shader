@@ -30,20 +30,20 @@ Shader "Point Cloud/Point"
             struct Attributes
             {
                 float4 position : POSITION;
-                half3 color : COLOR;
+                float3 color : COLOR;
             };
 
             struct Varyings
             {
                 float4 position : SV_Position;
-                half3 color : COLOR;
-                half psize : PSIZE;
+                float3 color : COLOR;
+                float psize : PSIZE;
                 UNITY_FOG_COORDS(0)
             };
 
-            half4 _Tint;
+            float4 _Tint;
             float4x4 _Transform;
-            half _PointSize;
+            float _PointSize;
 
         #if _COMPUTE_BUFFER
             StructuredBuffer<float4> _PointBuffer;
@@ -58,10 +58,10 @@ Shader "Point Cloud/Point"
             #if _COMPUTE_BUFFER
                 float4 pt = _PointBuffer[vid];
                 float4 pos = mul(_Transform, float4(pt.xyz, 1));
-                half3 col = PcxDecodeColor(asuint(pt.w));
+                float3 col = PcxDecodeColor(asuint(pt.w));
             #else
                 float4 pos = input.position;
-                half3 col = input.color;
+                float3 col = input.color;
             #endif
 
             #ifdef UNITY_COLORSPACE_GAMMA
@@ -83,9 +83,9 @@ Shader "Point Cloud/Point"
                 return o;
             }
 
-            half4 Fragment(Varyings input) : SV_Target
+            float4 Fragment(Varyings input) : SV_Target
             {
-                half4 c = half4(input.color, _Tint.a);
+                float4 c = float4(input.color, _Tint.a);
                 UNITY_APPLY_FOG(input.fogCoord, c);
                 return c;
             }
