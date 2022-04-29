@@ -255,6 +255,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2163061155770630284, guid: 55cce8243c1d8e54ab68bdd2a0f086d5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 068f66693b9c4b64b8fe01cf78ce88f6, type: 2}
     - target: {fileID: 8980549144392899874, guid: 55cce8243c1d8e54ab68bdd2a0f086d5, type: 3}
       propertyPath: m_Name
       value: anthidium-forcipatum
